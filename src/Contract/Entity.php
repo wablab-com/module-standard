@@ -1,5 +1,5 @@
 <?php 
-namespace WabLab\Module\Standard;
+namespace WabLab\Module\Standard\Contract;
 
 interface Entity 
 {
