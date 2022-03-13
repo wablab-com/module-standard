@@ -1,7 +1,8 @@
-<?php 
+<?php
+
 namespace WabLab\Module\Standard\Contract;
 
-interface Command 
+interface Command
 {
-    public function exec(): void;    
+    public function exec(): mixed;
 }
