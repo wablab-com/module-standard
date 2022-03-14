@@ -15,5 +15,8 @@
             "WabLab\\Module\\Standard\\": "src",
             "WabLab\\Module\\Standard\\Test\\": "tests"
         }
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5"
     }
 }

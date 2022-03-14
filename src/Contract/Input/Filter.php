@@ -1,5 +1,5 @@
 <?php 
-namespace WabLab\Module\Standard\Input;
+namespace WabLab\Module\Standard\Contract\Input;
 
 interface Filter 
 {

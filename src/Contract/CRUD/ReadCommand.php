@@ -1,7 +1,7 @@
 <?php 
-namespace WabLab\Module\Standard\CRUD;
+namespace WabLab\Module\Standard\Contract\CRUD;
 
-use WabLab\Module\Standard\Command;
+use WabLab\Module\Standard\Contract\Command;
 
 interface ReadCommand extends Command
 {
