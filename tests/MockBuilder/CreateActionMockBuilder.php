@@ -13,9 +13,14 @@ class CreateActionMockBuilder
     private Repository|\Mockery\LegacyMockInterface|\Mockery\MockInterface $repository;
     private \Mockery\Mock|CreateAction $mock;
 
-    public function __construct()
+    public function __construct(string $createActionClassName = '')
     {
-        $this->mock = \Mockery::mock(CreateAction::class)->makePartial();
+        if(!$createActionClassName) {
+            $this->mock = \Mockery::mock(CreateAction::class)->makePartial();
+        } else {
+            $this->mock = \Mockery::mock($createActionClassName)->makePartial();
+        }
+
     }
 
     public function withDummyRepository():static
