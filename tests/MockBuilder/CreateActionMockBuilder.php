@@ -2,14 +2,23 @@
 
 namespace WabLab\Module\Standard\Test\MockBuilder;
 
-
 use WabLab\Module\Standard\Contract\Entity;
 use WabLab\Module\Standard\Contract\Repository;
+use WabLab\Module\Standard\CRUD\Action\Create as CreateAction;
+
+/**
+ * @method CreateAction build()
+ */
 
 class CreateActionMockBuilder extends ActionMockBuilder
 {
 
     protected Repository|\Mockery\LegacyMockInterface|\Mockery\MockInterface $repository;
+
+    public function __construct(string $actionClassName = CreateAction::class)
+    {
+        parent::__construct($actionClassName);
+    }
 
     public function withDummyRepository(): static
     {

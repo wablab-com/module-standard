@@ -3,8 +3,9 @@
 namespace WabLab\Module\Standard\Test;
 
 use PHPUnit\Framework\TestCase;
+use WabLab\Module\Standard\Contract\CRUD\CreateAction as CreateActionInterface;
 use WabLab\Module\Standard\Contract\Entity;
-use WabLab\Module\Standard\CreateAction;
+use WabLab\Module\Standard\CRUD\Action\Create as CreateAction;
 use WabLab\Module\Standard\Test\MockBuilder\CreateActionMockBuilder;
 
 class CreateActionTest extends TestCase
@@ -66,5 +67,11 @@ class CreateActionTest extends TestCase
         $createAction = $this->actionBuilder->build();
         $createAction->returnEntity($returnEntity);
         $this->assertNull($returnEntity);
+    }
+
+    public function testClassShouldImplementActionInterface()
+    {
+        $createAction = $this->actionBuilder->build();
+        $this->assertInstanceOf(CreateActionInterface::class, $createAction);
     }
 }
