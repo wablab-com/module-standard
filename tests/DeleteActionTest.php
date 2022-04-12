@@ -25,4 +25,23 @@ class DeleteActionTest extends TestCase
         $this->assertInstanceOf(DeleteAction::class, $action);
     }
 
+    public function testDeleteEntityShouldReturnSelfReference()
+    {
+        $action = $this->actionBuilder->withDummyEntity()->withDummyRepository()->build();
+        $this->assertInstanceOf(DeleteAction::class, $action->deleteEntity());
+    }
+
+    public function testDeleteEntityShouldPassEntityObjectToRepository()
+    {
+        $action = $this->actionBuilder->withDummyEntity()->withDummyRepository()->repositoryDeleteShouldBeCalledOnce()->build();
+        $this->assertInstanceOf(DeleteAction::class, $action->deleteEntity());
+        $this->actionBuilder->close();
+    }
+
+    public function testReturnStatusMethodShouldReturnSelfReference()
+    {
+        $action = $this->actionBuilder->build();
+        $this->assertInstanceOf(DeleteAction::class, $action->returnStatus());
+    }
+
 }

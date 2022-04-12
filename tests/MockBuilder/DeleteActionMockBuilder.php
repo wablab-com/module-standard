@@ -7,7 +7,7 @@ use WabLab\Module\Standard\Contract\Repository;
 use WabLab\Module\Standard\CRUD\Action\Delete as DeleteAction;
 
 /**
- * @method DeleteAction build()
+ * @method \WabLab\Module\Standard\Contract\CRUD\DeleteAction build()
  */
 
 class DeleteActionMockBuilder extends ActionMockBuilder
@@ -27,9 +27,9 @@ class DeleteActionMockBuilder extends ActionMockBuilder
         return $this;
     }
 
-    public function repositorySaveShouldBeCalledOnce(): static
+    public function repositoryDeleteShouldBeCalledOnce(): static
     {
-        $this->repository->shouldReceive('save')->once();
+        $this->repository->shouldReceive('delete')->once();
         return $this;
     }
 
