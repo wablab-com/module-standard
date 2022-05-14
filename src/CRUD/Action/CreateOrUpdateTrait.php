@@ -2,32 +2,28 @@
 
 namespace WabLab\Module\Standard\CRUD\Action;
 
-use WabLab\Module\Standard\Contract\CRUD\DeleteAction;
 use WabLab\Module\Standard\Contract\Entity;
 use WabLab\Module\Standard\Contract\Repository;
 
-abstract class Delete implements DeleteAction
+trait CreateOrUpdateTrait
 {
-
     protected ?Entity $entity = null;
     protected Repository $repository;
-    protected bool $status = false;
 
     public function __construct(Repository $repository)
     {
         $this->repository = $repository;
     }
 
-    public function deleteEntity(): static
+    public function saveEntity(): static
     {
-        $this->status = $this->repository->delete($this->entity);
+        $this->repository->save($this->entity);
         return $this;
     }
 
-    public function returnStatus(?bool &$status): static
+    public function returnEntity(?Entity &$entity): static
     {
-        $status = $this->status;
+        $entity = $this->entity;
         return $this;
     }
-
 }

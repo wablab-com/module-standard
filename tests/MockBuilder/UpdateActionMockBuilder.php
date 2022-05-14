@@ -4,18 +4,18 @@ namespace WabLab\Module\Standard\Test\MockBuilder;
 
 use WabLab\Module\Standard\Contract\Entity;
 use WabLab\Module\Standard\Contract\Repository;
-use WabLab\Module\Standard\CRUD\Action\Delete as DeleteAction;
+use WabLab\Module\Standard\CRUD\Action\Update as UpdateAction;
 
 /**
- * @method \WabLab\Module\Standard\Contract\CRUD\DeleteAction build()
+ * @method UpdateAction build()
  */
 
-class DeleteActionMockBuilder extends ActionMockBuilder
+class UpdateActionMockBuilder extends ActionMockBuilder
 {
 
     protected Repository|\Mockery\LegacyMockInterface|\Mockery\MockInterface $repository;
 
-    public function __construct(string $actionClassName = DeleteAction::class)
+    public function __construct(string $actionClassName = UpdateAction::class)
     {
         parent::__construct($actionClassName);
     }
@@ -27,21 +27,9 @@ class DeleteActionMockBuilder extends ActionMockBuilder
         return $this;
     }
 
-    public function repositoryDeleteShouldBeCalledOnce(): static
+    public function repositorySaveShouldBeCalledOnce(): static
     {
-        $this->repository->shouldReceive('delete')->once();
-        return $this;
-    }
-
-    public function repositoryDeleteShouldReturnFalse(): static
-    {
-        $this->repository->shouldReceive('delete')->andReturn(false);
-        return $this;
-    }
-
-    public function repositoryDeleteShouldReturnTrue(): static
-    {
-        $this->repository->shouldReceive('delete')->andReturn(true);
+        $this->repository->shouldReceive('save')->once();
         return $this;
     }
 

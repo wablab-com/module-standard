@@ -7,5 +7,5 @@ use WabLab\Module\Standard\Contract\Entity;
 interface ReadAction  extends Action
 {
     public function fetchSavedEntity(): static;    
-    public function returnEntity(Entity &$entity): static;
+    public function returnEntity(?Entity &$entity): static;
 }

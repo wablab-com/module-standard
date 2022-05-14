@@ -3,6 +3,7 @@
 namespace WabLab\Module\Standard\Test;
 
 use PHPUnit\Framework\TestCase;
+use WabLab\Module\Standard\Contract\CRUD\DeleteAction as DeleteActionInterface;
 use WabLab\Module\Standard\Test\MockBuilder\DeleteActionMockBuilder;
 use WabLab\Module\Standard\CRUD\Action\Delete as DeleteAction;
 
@@ -41,7 +42,26 @@ class DeleteActionTest extends TestCase
     public function testReturnStatusMethodShouldReturnSelfReference()
     {
         $action = $this->actionBuilder->build();
-        $this->assertInstanceOf(DeleteAction::class, $action->returnStatus());
+        $this->assertInstanceOf(DeleteAction::class, $action->returnStatus($status));
     }
 
+    public function testReturnStatusMethodShouldPassTheStatusFalseIfDeletionFailed()
+    {
+        $action = $this->actionBuilder->withDummyEntity()->withDummyRepository()->repositoryDeleteShouldReturnFalse()->build();
+        $action->deleteEntity()->returnStatus($status);
+        $this->assertFalse($status);
+    }
+
+    public function testReturnStatusMethodShouldPassTheStatusTrueIfDeletionSucceeded()
+    {
+        $action = $this->actionBuilder->withDummyEntity()->withDummyRepository()->repositoryDeleteShouldReturnTrue()->build();
+        $action->deleteEntity()->returnStatus($status);
+        $this->assertTrue($status);
+    }
+
+    public function testDeleteActionObjectImplementsDeleteActionInterface()
+    {
+        $action = $this->actionBuilder->build();
+        $this->assertInstanceOf(DeleteActionInterface::class, $action);
+    }
 }
